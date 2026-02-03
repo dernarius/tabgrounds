@@ -1,0 +1,124 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Tabgrounds Backend",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Read Root",
+        "description": "Health check and status endpoint.",
+        "operationId": "read_root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/advance": {
+      "post": {
+        "summary": "Advance Game",
+        "description": "Attempts to advance the game to the next stage.",
+        "operationId": "advance_game_advance_post",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdvanceResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdvanceResult": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "new_state": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/GameStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "message"
+        ],
+        "title": "AdvanceResult"
+      },
+      "GameStatus": {
+        "properties": {
+          "tournament_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tournament Id"
+          },
+          "current_index": {
+            "type": "integer",
+            "title": "Current Index"
+          },
+          "is_completed": {
+            "type": "boolean",
+            "title": "Is Completed"
+          },
+          "total_challenges": {
+            "type": "integer",
+            "title": "Total Challenges"
+          },
+          "current_challenge_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Challenge Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "tournament_id",
+          "current_index",
+          "is_completed",
+          "total_challenges",
+          "current_challenge_description"
+        ],
+        "title": "GameStatus"
+      }
+    }
+  }
+}

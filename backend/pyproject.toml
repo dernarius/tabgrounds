@@ -1,0 +1,23 @@
+[project]
+name = "tabgrounds"
+version = "0.1.0"
+description = "Tabgrounds: Python backend + React frontend"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "httpx",
+    "pydantic",
+    "websockets"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.0",
+    "ty>=0.0.14",
+]

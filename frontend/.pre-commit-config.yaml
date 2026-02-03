@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: lint-js
+        name: eslint
+        entry: bun run lint
+        language: system
+        files: \.(js|jsx|ts|tsx)$
+        pass_filenames: false
+      - id: type-check-js
+        name: tsc
+        entry: bun x tsc -b
+        language: system
+        files: \.(js|jsx|ts|tsx)$
+        pass_filenames: false
